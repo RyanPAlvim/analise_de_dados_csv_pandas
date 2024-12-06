@@ -1,4 +1,5 @@
 import csv
+import os
 
 dados = list()
 
@@ -15,9 +16,10 @@ while True:
     if continuar != 's':
         break
 
-with open('data.csv', 'w', encoding='utf-8', newline='') as file:
+with open('data.csv', 'a', encoding='utf-8', newline='') as file:
     writer = csv.writer(file)
-    writer.writerow(['Nome', 'Idade', 'Estado', 'Salário'])
+    if os.path.getsize('data.csv') == 0:
+        writer.writerow(['Nome', 'Idade', 'Estado', 'Salário'])
     writer.writerows(dados)
 
 print('Dados salvos em data.csv...')
